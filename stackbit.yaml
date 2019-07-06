@@ -1,0 +1,177 @@
+stackbitVersion: ~0.2.0
+ssgName: eleventy
+version: 0.8.2
+uploadDir: img
+buildCommand: "npm install && npm run build"
+publishDir: _site
+dataDir: _data
+pagesDir: ""
+staticDir: "static"
+pageTemplateKey: layout
+models:
+  metadata:
+    type: data
+    label: Site Metadata
+    description: Global Site Metadata
+    file: metadata.json
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: url
+        type: string
+        label: Absolute Site URL
+      - name: author
+        type: object
+        label: Author
+        fields:
+          - name: name
+            type: string
+            label: Name
+          - name: email
+            type: string
+            label: Email
+          - name: github
+            type: string
+            label: GitHub URL
+  home:
+    type: page
+    label: Home
+    description: Homepage layout
+    singleInstance: true
+    file: pages/home.md
+    template: layouts/home.njk
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: date
+        type: date
+        label: Date
+      - name: permalink
+        type: string
+        label: Permalink
+        description: URL of the page
+        const: "/"
+      - name: navtitle
+        type: string
+        label: Navigation item title
+      - name: tags
+        type: list
+        label: Tags
+  page:
+    type: page
+    label: Page
+    description: Generic page layout
+    folder: pages
+    exclude: "{home.md,blog.md,contact.md}"
+    template: layouts/page.njk
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: date
+        type: date
+        label: Date
+      - name: permalink
+        type: string
+        label: Permalink
+        description: URL of the page
+      - name: navtitle
+        type: string
+        label: Navigation item title
+      - name: tags
+        type: list
+        label: Tags
+  blog:
+    type: page
+    label: Blog Post
+    description: Blog layout
+    singleInstance: true
+    file: pages/blog.md
+    template: layouts/blog.njk
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: date
+        type: date
+        label: Date
+      - name: permalink
+        type: string
+        label: Permalink
+        description: URL of the page
+      - name: navtitle
+        type: string
+        label: Navigation item title
+      - name: tags
+        type: list
+        label: Tags
+  contact:
+    type: page
+    label: Contact
+    description: Contact page layout
+    singleInstance: true
+    file: pages/contact.md
+    template: layouts/contact.njk
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: date
+        type: date
+        label: Date
+      - name: permalink
+        type: string
+        label: Permalink
+        description: URL of the page
+      - name: navtitle
+        type: string
+        label: Navigation item title
+      - name: tags
+        type: list
+        label: Tags
+      - name: section
+        type: enum
+        label: Section
+        options:
+          - home
+          - page
+          - blog
+          - post
+          - contact
+  post:
+    type: page
+    label: Post
+    description: Post layout
+    folder: posts
+    template: layouts/post.njk
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: summary
+        type: text
+        label: Summary
+      - name: date
+        type: date
+        label: Date
+      - name: tags
+        type: list
+        label: Tags
+  not_found:
+    type: page
+    label: 404 Page
+    description: 404 page layout
+    singleInstance: true
+    file: 404.md
+    template: layouts/page.njk
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: permalink
+        type: string
+        label: Permalink
+        description: URL of the page
+        const: /404.html
